@@ -399,6 +399,8 @@ add_library(${PROJECT_NAME} OBJECT
 	src/util_macro.h
 	src/utils.cpp
 	src/utils.h
+	src/validation_harness.cpp
+	src/validation_harness.h
 	src/version.cpp
 	src/version.h
 	src/weather.cpp

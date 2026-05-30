@@ -70,6 +70,7 @@
 #include "transition.h"
 #include "baseui.h"
 #include "algo.h"
+#include "validation_harness.h"
 
 using namespace Game_Interpreter_Shared;
 
@@ -514,7 +515,16 @@ void Game_Interpreter::Update(bool reset_loop_count) {
 		int current_frame_idx = _state.stack.size() - 1;
 
 		const int index_before_exec = frame->current_command;
-		if (!ExecuteCommand()) {
+		const auto command_before_exec = frame->commands[frame->current_command];
+		auto validation_snapshot = ValidationHarness::BeforeCommand(
+			index_before_exec,
+			frame->maniac_event_id,
+			frame->maniac_event_page_id,
+			command_before_exec
+		);
+		const bool command_result = ExecuteCommand();
+		ValidationHarness::AfterCommand(validation_snapshot, command_result);
+		if (!command_result) {
 			break;
 		}
 
@@ -5447,13 +5457,16 @@ bool Game_Interpreter::CommandManiacWritePicture(lcf::rpg::EventCommand const& c
 		}
 
 		auto found_file = FileFinder::Save().FindFile(filename);
+		auto output_path = found_file.empty() ? filename : found_file;
 
-		auto os = FileFinder::Save().OpenOutputStream(found_file.empty() ? filename : found_file);
+		auto os = FileFinder::Save().OpenOutputStream(output_path);
+		bool write_success = false;
 		if (os) {
-			bitmap->WritePNG(os);
+			write_success = bitmap->WritePNG(os);
 		} else {
 			Output::Warning("ManiacSaveImage: Failed to open file for writing: {}", filename);
 		}
+		ValidationHarness::RecordArtifactPath("maniac_write_picture_png", output_path, write_success);
 	} else {
 		Output::Debug("ManiacSaveImage: Nothing to save (Target {})", target_type);
 	}
