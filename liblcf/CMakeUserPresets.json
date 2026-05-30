@@ -1,0 +1,67 @@
+{
+	"version": 4,
+	"configurePresets": [
+		{
+			"name": "gengaku-liblcf-win64-debug-md",
+			"displayName": "Gengaku liblcf Windows x64 Debug",
+			"description": "Build and install liblcf for the Player Debug preset using vcpkg x64-windows and the dynamic MSVC CRT.",
+			"generator": "Visual Studio 18 2026",
+			"architecture": "x64",
+			"binaryDir": "${sourceDir}/build/gengaku-win64-debug-md",
+			"toolchainFile": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug",
+				"CMAKE_INSTALL_PREFIX": "${sourceDir}/../build/deps/x64-windows-debug",
+				"CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
+				"BUILD_SHARED_LIBS": "OFF",
+				"VCPKG_TARGET_TRIPLET": "x64-windows",
+				"VCPKG_CRT_LINKAGE": "dynamic",
+				"LIBLCF_ENABLE_TOOLS": "OFF",
+				"LIBLCF_ENABLE_TESTS": "OFF",
+				"LIBLCF_ENABLE_INSTALL": "ON",
+				"LIBLCF_WITH_INI": "ON",
+				"LIBLCF_WITH_XML": "ON",
+				"LIBLCF_WITH_ICU": "ON"
+			}
+		},
+		{
+			"name": "gengaku-liblcf-win64-release-md",
+			"displayName": "Gengaku liblcf Windows x64 Release",
+			"description": "Build and install Release liblcf for the Player Release preset using vcpkg x64-windows and the dynamic MSVC CRT.",
+			"generator": "Visual Studio 18 2026",
+			"architecture": "x64",
+			"binaryDir": "${sourceDir}/build/gengaku-win64-release-md",
+			"toolchainFile": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release",
+				"CMAKE_INSTALL_PREFIX": "${sourceDir}/../build/deps/x64-windows-release",
+				"CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",
+				"BUILD_SHARED_LIBS": "OFF",
+				"VCPKG_TARGET_TRIPLET": "x64-windows",
+				"VCPKG_CRT_LINKAGE": "dynamic",
+				"INIH_INCLUDE_DIR": "C:/vcpkg/installed/x64-windows/include",
+				"INIH_LIBRARY": "C:/vcpkg/installed/x64-windows/lib/inih.lib",
+				"LIBLCF_ENABLE_TOOLS": "OFF",
+				"LIBLCF_ENABLE_TESTS": "OFF",
+				"LIBLCF_ENABLE_INSTALL": "ON",
+				"LIBLCF_WITH_INI": "ON",
+				"LIBLCF_WITH_XML": "ON",
+				"LIBLCF_WITH_ICU": "ON"
+			}
+		}
+	],
+	"buildPresets": [
+		{
+			"name": "gengaku-liblcf-win64-debug-md",
+			"displayName": "Build Gengaku liblcf Windows x64 Debug",
+			"configurePreset": "gengaku-liblcf-win64-debug-md",
+			"configuration": "Debug"
+		},
+		{
+			"name": "gengaku-liblcf-win64-release-md",
+			"displayName": "Build Gengaku liblcf Windows x64 Release",
+			"configurePreset": "gengaku-liblcf-win64-release-md",
+			"configuration": "Release"
+		}
+	]
+}

@@ -305,6 +305,7 @@
 		{
 			"name": "windows-debug",
 			"displayName": "Windows (Debug)",
+			"toolchainFile": "C:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
 			"inherits": [
 				"windows-parent",
 				"type-debug"
@@ -1537,7 +1538,8 @@
 		},
 		{
 			"name": "windows-debug",
-			"configurePreset": "windows-debug"
+			"configurePreset": "windows-debug",
+
 		},
 		{
 			"name": "windows-relwithdebinfo",
