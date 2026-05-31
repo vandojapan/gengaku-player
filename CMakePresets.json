@@ -1,6 +1,6 @@
 {
 	"cacheVariables": {
-		"CMAKE_TOOLCHAIN_FILE": "C:\\vcpkg\scripts\buildsystems\vcpkg.cmake"
+		"CMAKE_TOOLCHAIN_FILE": "C:\\vcpkg\\scripts\buildsystems\\vcpkg.cmake"
 	},
 
 	"vendor": {
@@ -1542,7 +1542,7 @@
 		},
 		{
 			"name": "windows-debug",
-			"configurePreset": "windows-debug",
+			"configurePreset": "windows-debug"
 
 		},
 		{
