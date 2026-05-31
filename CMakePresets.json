@@ -1,4 +1,8 @@
 {
+	"cacheVariables": {
+		"CMAKE_TOOLCHAIN_FILE": "C:\\vcpkg\scripts\buildsystems\vcpkg.cmake"
+	},
+
 	"vendor": {
 		"README": {
 			"line1": "!!! GENERATED FILE. DO NOT EDIT !!!",
